@@ -12,6 +12,11 @@ import { PerfilComponent } from './perfil/perfil.component';
 
 //Mantenimientos
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 const routes: Routes = [
@@ -25,11 +30,19 @@ const routes: Routes = [
     {path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas'}},
     {path: 'rxjs', component: RxjsComponent, data: {titulo: 'Rxjs'}},
     {path: 'perfil', component: PerfilComponent, data: {titulo: 'Perfil de usuario'}},
+    {path: 'buscar/:termino', component: BusquedaComponent, data: {titulo: 'Busquedas'}},
    // {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 
 
    //Mantenimientos
-   {path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Usuarios de aplicacion'}},
+
+   {path: 'hospitales', component:HospitalesComponent, data: {titulo: 'Hospitales de aplicacion'}},
+   {path: 'medicos', component:MedicosComponent, data: {titulo: 'Medicos de aplicacion'}},
+   {path: 'medico/:id', component:MedicoComponent, data: {titulo: 'Medicos de aplicacion'}},
+
+  //RUtas de Admin
+  {path: 'usuarios', canActivate: [AdminGuard], component: UsuariosComponent, data: {titulo: 'Usuarios de aplicacion'}},
+
 
   ]
 },
